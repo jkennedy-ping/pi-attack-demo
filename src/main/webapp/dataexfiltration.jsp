@@ -140,6 +140,8 @@ body {  background-image: url('bgStokenToken.png'); }
   <!-- jQuery first, then Bootstrap JS -->
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.color-2.1.2.min.js"></script>
+  <script src="js/functions.js"></script>  
 
   <script type="text/javascript">
     $(document).ready(
@@ -155,46 +157,11 @@ body {  background-image: url('bgStokenToken.png'); }
                   if (!server || !url || !token || !iterations || !ip) {
                     alert("Server, URL, Token, IP, and Iterations fields are required")
                   } else {
-                      $.post("DataExfiltration", $("#attack-form").serialize()).done(function(data) {
-
-                      	// clear any results from a previous attack
-      					$("#attack-results li").remove();
-                      	
-      					$("#attack-results-wrapper").show();
-      					var attackResults = $("#attack-results");
-      					
-                          var poll = function() {
-                            $.ajax({
-                              url: 'DataExfiltration',
-                              dataType: 'json',
-                              type: 'get',
-                              success: function(data) {
-                              	console.log(data);
-                                if (data == "complete") { 
-                                  clearInterval(pollInterval); 
-                                } else {
-                                    $.each(data, function(index, data) { // Iterate over the JSON array.
-                                        $("<li>").text(data).appendTo(attackResults); 
-                                    });
-                                }
-                              },
-                              error: function() { 
-                                console.log('Error!');
-                              }
-                            })
-                          };
-                          
-                          var delay = $("#delay").val();
-                          delay = (delay == "0") ? 2000 : delay * 1000;
-                          var pollInterval = setInterval(function() {
-                            poll();
-                          }, delay);
-                      }); // $.post
-                    }
-  	          }); //function click end
-                   
+                	  startAttack('DataExfiltration');
+                  }
+  	        }); //function click end
                 
-          // select all options in select lists
+			// select all options in select lists
             $('#attack-form select option').prop('selected', true);
     }); // document.ready end
   </script>

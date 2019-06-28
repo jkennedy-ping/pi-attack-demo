@@ -13,7 +13,7 @@ String token = (String)request.getAttribute("token");
 <meta charset="utf-8">
 <meta name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/styles.css">
@@ -133,6 +133,8 @@ body {
   <!-- jQuery first, then Bootstrap JS -->
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.color-2.1.2.min.js"></script>
+  <script src="js/functions.js"></script>  
 
   <script type="text/javascript">
     $(document).ready(
@@ -147,41 +149,7 @@ body {
                   if (!server || !url || !token || !iterations) {
                     alert("Server, URL, Token, and Iterations fields are required")
                   } else {
-                    $.post("StolenToken", $("#attack-form").serialize()).done(function(data) {
-
-                    	// clear any results from a previous attack
-    					$("#attack-results li").remove();
-                    	
-    					$("#attack-results-wrapper").show();
-    					var attackResults = $("#attack-results");
-    					
-                        var poll = function() {
-                          $.ajax({
-                            url: 'StolenToken',
-                            dataType: 'json',
-                            type: 'get',
-                            success: function(data) {
-                            	console.log(data);
-                              if (data == "complete") { 
-                                clearInterval(pollInterval); 
-                              } else {
-                                  $.each(data, function(index, data) { // Iterate over the JSON array.
-                                      $("<li>").text(data).appendTo(attackResults); 
-                                  });
-                              }
-                            },
-                            error: function() { 
-                              console.log('Error!');
-                            }
-                          })
-                        };
-                        
-                        var delay = $("#delay").val();
-                        delay = (delay == "0") ? 2000 : delay * 1000;
-                        var pollInterval = setInterval(function() {
-                          poll();
-                        }, delay);
-                    }); // $.post
+                	  startAttack('StolenToken');
                   }
 	          }); //function click end
                 

@@ -1,2 +1,4 @@
-# pi-attack-demo
-Interfaces for PingIntelligence attack scenarios
+TODO
+- async attack results
+- add logger
+- add to git

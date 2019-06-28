@@ -1,0 +1,45 @@
+p.nav { 
+	padding-top: 10px;
+}
+p.nav a { 
+	padding-left: 5px;
+	padding-right: 5px;	
+}
+
+@media ( min-width : 1200px) {
+  .container {
+    max-width: 740px;
+  }
+  .list-group-item {
+    padding: 5px;
+  }
+}
+
+body {
+  margin: 0;
+  background-size: 1440px 800px;
+  background-repeat: no-repeat;
+  display: compact;
+  font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#main-wrapper {
+	margin-top: 50px;
+}
+
+#attack-results-wrapper {
+	overflow-y: scroll; 
+	height:150px; 
+	width: auto; 
+	margin-bottom: 20px;	
+	border-width: 1px;	
+	border-color:#2F4F4F;
+	border-style: solid;
+}
+
+#transactions {
+	overflow-y: scroll; 
+	height:150px; 
+	width: auto; 
+	margin-bottom: 20px;	
+}
